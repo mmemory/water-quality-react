@@ -1,10 +1,11 @@
 import React from 'react';
+import Header from './components/common/Header/Header';
 
 export default class App extends React.Component {
 
     render() {
         return (
-            <h1>Water Quality</h1>
+            <Header />
         );
     }
 };
