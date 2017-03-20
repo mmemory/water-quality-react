@@ -10,7 +10,8 @@ const commonConfig = merge([
         entry: PATHS.app,
         plugins: [
             new HtmlWebpackPlugin({
-                title: 'Water Quality'
+                template: './src/app.html',
+                xhtml: true
             })
         ]
     },
