@@ -3,3 +3,4 @@ node_modules/
 build/
 .DS_Store
 prod/
+config/config.js
