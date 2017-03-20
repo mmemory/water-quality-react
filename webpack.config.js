@@ -6,7 +6,7 @@ const developConfig = require('./config/webpack/webpack.dev');
 const productionConfig = require('./config/webpack/webpack.prod');
 
 // Update project title here
-const title = 'React Boilerplate';
+const title = 'Water Quality';
 
 const commonConfig = merge([
     {

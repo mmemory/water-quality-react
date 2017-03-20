@@ -1,4 +1,4 @@
-# React Boilerplate
+# Water Quality
 
 Fork/clone and run ```npm install``` then ```npm run dev``` to start developing. Run
 ```npm run build``` to make a production ready folder (./prod). Index.html is automatically
