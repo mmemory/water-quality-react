@@ -27,7 +27,7 @@ exports.loadJavaScript = ({ include, exclude }) => ({
                     // something more custom, pass a path to it.
                     // I.e., { cacheDirectory: '<path>' }
                     cacheDirectory: true,
-                    presets: ['es2015']
+                    presets: ['es2015', 'react']
                 },
             },
         ],
