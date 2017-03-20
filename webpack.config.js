@@ -5,17 +5,20 @@ const PATHS = require('./config/webpack/paths')({dir: __dirname});
 const developConfig = require('./config/webpack/webpack.dev');
 const productionConfig = require('./config/webpack/webpack.prod');
 
+const title = 'React Boilerplate';
+
 const commonConfig = merge([
     {
         entry: PATHS.app,
         plugins: [
             new HtmlWebpackPlugin({
-                template: './src/app.html',
+                template: PATHS.template,
+                title: title,
                 xhtml: true
             })
         ]
     },
-    parts.loadJavaScript({include: PATHS.app, exclude: /(node_modules|bower_components)/}),
+    parts.loadJavaScript({include: PATHS.app, exclude: /(node_modules)/}),
     parts.loadImages(),
     parts.loadFonts()
 ]);

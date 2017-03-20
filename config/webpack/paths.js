@@ -4,4 +4,5 @@ module.exports = ({ dir }) => ({
     app: path.join(dir, 'src'),
     build: path.join(dir, 'build'),
     prod: path.join(dir, 'prod'),
+    template: path.join(dir, 'src/app.html')
 });
