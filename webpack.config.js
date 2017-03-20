@@ -5,6 +5,7 @@ const PATHS = require('./config/webpack/paths')({dir: __dirname});
 const developConfig = require('./config/webpack/webpack.dev');
 const productionConfig = require('./config/webpack/webpack.prod');
 
+// Update project title here
 const title = 'React Boilerplate';
 
 const commonConfig = merge([
