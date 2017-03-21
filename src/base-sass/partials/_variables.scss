@@ -1,1 +1,18 @@
-$primary-color: blue;
+// Colors
+$primary-color: #A7C8DB;
+$secondary-color: #1F3542;
+$tertiary-color: #323D42;
+$body-copy-color: #95989A;
+$white: white;
+
+$primary-danger: rgb(195,58,40);
+$primary-safe: rgb(85,181,159);
+$primary-danger-transparent: rgba($primary-danger, .32);
+$primary-safe-transparent: rgba($primary-safe, .32);
+
+//Fonts
+$primary-font: 'Source Sans Pro', sans-serif;
+$bold-weight: 600;
+$medium-weight: 400;
+$light-weight: 300;
+$relative-font-size: 16px;

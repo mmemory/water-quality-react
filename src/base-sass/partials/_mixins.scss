@@ -1,0 +1,15 @@
+@mixin master-button($border-color, $type: medium) {
+  border: solid 2px $border-color;
+
+  @if $type == small {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+  } @else if $type == medium {
+    padding: 20px 30px;
+    font-size: 1.3rem
+  } @else if $type == large {
+    padding: 30px 40px;
+    font-size: 1.5rem
+  }
+}
+

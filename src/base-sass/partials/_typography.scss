@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
+
+body {
+  font-size: $relative-font-size;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, div {
+  font-family: $primary-font;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: $bold-weight;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: $medium-weight;
+}
+
+h3 {
+  font-size: 1.4rem;
+  font-weight: $medium-weight;
+}
+
+h4 {
+  font-size: 1.3rem;
+  font-weight: $medium-weight;
+}
+
+h5 {
+  font-size: 1.2rem;
+  font-weight: $medium-weight;
+}
+
+h6 {
+  font-size: 1.1rem;
+  font-weight: $medium-weight;
+}
+
+p, a, div {
+  font-size: 1rem;
+  color: $body-copy-color;
+  font-weight: $light-weight;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-color;
+
+  &:link {
+    color: $primary-color;
+  }
+
+  &:visited {
+    color: darken($primary-color, 20);
+  }
+
+  &:hover {
+    color: darken($primary-color, 20);
+
+  }
+
+  &:active {
+    color: $primary-color;
+  }
+}
