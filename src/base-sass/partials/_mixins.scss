@@ -1,15 +1,37 @@
-@mixin master-button($border-color, $type: medium) {
-  border: solid 2px $border-color;
+@mixin ghost-button($border-color, $color, $type: medium) {
+
+  .ghost-btn {
+    border: solid 3px $border-color;
+    text-transform: uppercase;
+    color: $border-color;
+    text-align: center;
+    font-weight: $medium-weight;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+
+  .ghost-btn:hover {
+    background-color: $border-color;
+    color: $color;
+  }
 
   @if $type == small {
-    padding: 10px 20px;
-    font-size: 1.2rem;
+    .btn-small {
+      padding: 15px 0;
+      font-size: 1.2rem;
+      width: 200px;
+    }
   } @else if $type == medium {
-    padding: 20px 30px;
-    font-size: 1.3rem
+    .btn-medium {
+      padding: 25px 0;
+      font-size: 1.5rem;
+      width: 275px;
+    }
   } @else if $type == large {
-    padding: 30px 40px;
-    font-size: 1.5rem
+    .btn-large {
+      padding: 30px 40px;
+      font-size: 1.5rem
+    }
   }
 }
 
