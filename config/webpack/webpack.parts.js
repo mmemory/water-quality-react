@@ -27,7 +27,8 @@ exports.loadJavaScript = ({ include, exclude }) => ({
                     // something more custom, pass a path to it.
                     // I.e., { cacheDirectory: '<path>' }
                     cacheDirectory: true,
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'react'],
+                    plugins: ['transform-object-assign']
                 },
             },
         ],
@@ -91,7 +92,7 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
                 exclude,
 
                 use: {
-                    loader: 'file-loader',
+                    loader: 'file-loader?publicPath=./images/&outputPath=./images/',
                     options,
                 },
             },

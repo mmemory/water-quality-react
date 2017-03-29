@@ -5,7 +5,7 @@ const PATHS = require('./paths')({dir: path.join(__dirname, '../../')});
 
 module.exports = merge([
     parts.prod,
-    parts.output({path: PATHS.prod}),
+    parts.output({path: PATHS.build}),
     parts.extractCss({
         use: [
             'css-loader',

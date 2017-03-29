@@ -4,9 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PATHS = require('./config/webpack/paths')({dir: __dirname});
 const developConfig = require('./config/webpack/webpack.dev');
 const productionConfig = require('./config/webpack/webpack.prod');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const config = require('./config/config');
 
-// Update project title here
-const title = 'Water Quality';
 
 const commonConfig = merge([
     {
@@ -14,9 +14,9 @@ const commonConfig = merge([
         plugins: [
             new HtmlWebpackPlugin({
                 template: PATHS.template,
-                title: title,
                 xhtml: true
-            })
+            }),
+            new OpenBrowserPlugin({url: `http://localhost:${config.port}`})
         ]
     },
     parts.loadJavaScript({include: PATHS.app, exclude: /(node_modules)/}),
