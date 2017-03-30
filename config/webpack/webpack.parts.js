@@ -4,14 +4,14 @@ const webpack = require('webpack');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
 
-exports.output = ({ path } = {}) => ({
+exports.output = ({path} = {}) => ({
     output: {
         path,
         filename: '[name].js'
     }
 });
 
-exports.loadJavaScript = ({ include, exclude }) => ({
+exports.loadJavaScript = ({include, exclude}) => ({
     module: {
         rules: [
             {
@@ -35,7 +35,7 @@ exports.loadJavaScript = ({ include, exclude }) => ({
     },
 });
 
-exports.loadSass = ({ include, exclude } = {}) => ({
+exports.loadSass = ({include, exclude} = {}) => ({
     module: {
         rules: [
             {
@@ -49,7 +49,7 @@ exports.loadSass = ({ include, exclude } = {}) => ({
     },
 });
 
-exports.extractCss = ({ include, exclude, use }) => {
+exports.extractCss = ({include, exclude, use}) => {
     // Output extracted CSS to a file
     const plugin = new ExtractTextPlugin({
         filename: '[name].css',
@@ -70,7 +70,7 @@ exports.extractCss = ({ include, exclude, use }) => {
                 },
             ],
         },
-        plugins: [ plugin ],
+        plugins: [plugin],
     };
 };
 
@@ -83,7 +83,7 @@ exports.autoprefix = () => ({
     },
 });
 
-exports.loadImages = ({ include, exclude, options } = {}) => ({
+exports.loadImages = ({include, exclude, options} = {}) => ({
     module: {
         rules: [
             {
@@ -100,7 +100,7 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
     },
 });
 
-exports.loadFonts = ({ include, exclude, options } = {}) => ({
+exports.loadFonts = ({include, exclude, options} = {}) => ({
     module: {
         rules: [
             {
@@ -118,7 +118,7 @@ exports.loadFonts = ({ include, exclude, options } = {}) => ({
     },
 });
 
-exports.generateSourcemaps = ({ type } = {}) => ({
+exports.generateSourcemaps = ({type} = {}) => ({
     devtool: type
 });
 
@@ -134,7 +134,7 @@ exports.minifyJavaScript = () => ({
     ],
 });
 
-exports.minifyCSS = ({ options }) => ({
+exports.minifyCSS = ({options}) => ({
     plugins: [
         new OptimizeCSSAssetsPlugin({
             cssProcessor: cssnano,
