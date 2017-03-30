@@ -1,5 +1,7 @@
 import React from 'react';
 import Map from './../map/Map';
+import ToolBar from './../toolBar/ToolBar';
+import Loader from './../common/loader/Loader';
 
 class MapPage extends React.Component {
     constructor() {
@@ -8,7 +10,8 @@ class MapPage extends React.Component {
         this.state = {
             lat: 0,
             lng: 0,
-            zoom: 3
+            zoom: 3,
+            showLoader: false
         }
     }
 
@@ -18,24 +21,31 @@ class MapPage extends React.Component {
     }
 
     componentWillMount() {
-        // alert('test');
-        let _this = this;
+        this.setState({
+            showLoader: true
+        });
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-                _this.setState({
+                console.log(position);
+                this.setState({
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
-                    zoom: 12
+                    zoom: 12,
+                    showLoader: false
                 });
             });
         }
     }
 
     render() {
+        let loaderStyle = this.state.showLoader ? {'display': 'block'} : {'display': 'none'};
+
         return (
             <div className="map-container">
+                <ToolBar />
                 <Map {...this.state} />
+                <Loader style={loaderStyle} />
             </div>
         )
     }
