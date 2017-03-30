@@ -1,7 +1,8 @@
 @import "./../../../base-sass/main";
 
 .map-container {
-  height: calc(100vh - #{$header-height});
+  height: $map-height;
+  position: relative;
 
   .map-element {
     height: 100%;
