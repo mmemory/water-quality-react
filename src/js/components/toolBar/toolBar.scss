@@ -1,0 +1,13 @@
+@import "./../../../base-sass/main";
+
+.toolbar-container {
+  position: absolute;
+  height: $toolbar-height;
+  width: 100%;
+  background-color: rgba($white, .95);
+  z-index: 1000;
+
+  .menu-button-container {
+    height: 100%;
+  }
+}
