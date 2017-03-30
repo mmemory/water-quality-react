@@ -14,7 +14,6 @@ class Routes extends React.Component {
                     <Header />
                     <Route exact path="/" component={Home}/>
                     <Route path="/map" component={MapPage}/>
-                    <Footer />
                 </div>
             </Router>
         );

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './home.scss';
+import Footer from './../common/Footer/Footer';
 
 
 const Home = () => {
@@ -54,6 +55,7 @@ const Home = () => {
                     </div>
                 </section>
             </main>
+            <Footer />
         </div>
     );
 };
