@@ -3,6 +3,7 @@ const BabiliPlugin = require('babili-webpack-plugin');
 const webpack = require('webpack');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
+const path = require('path');
 
 exports.output = ({path} = {}) => ({
     output: {
@@ -43,7 +44,19 @@ exports.loadSass = ({include, exclude} = {}) => ({
                 include,
                 exclude,
 
-                use: ['style-loader', 'css-loader', 'fast-sass-loader'],
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            // includePaths: [
+                            //     path.resolve(__dirname, '../../src/base-sass/_main.scss')
+                            // ],
+                            // data: "@import " + path.resolve(__dirname, '../../src/base-sass/_main.scss')
+                        }
+                    }
+                ],
             },
         ],
     },
@@ -87,7 +100,7 @@ exports.loadImages = ({include, exclude, options} = {}) => ({
     module: {
         rules: [
             {
-                test: /\.(png|jpg|svg)$/,
+                test: /\.(png|jpg|svg|gif)$/,
                 include,
                 exclude,
 
