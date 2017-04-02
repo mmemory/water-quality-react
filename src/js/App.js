@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Header from './components/common/Header/Header';
 import Home from './components/homePage/Home';
 import MapPage from './components/mapPage/MapPage';
-import Footer from './components/common/Footer/Footer';
+import './../base-sass/_main.scss';
 
 
 class Routes extends React.Component {

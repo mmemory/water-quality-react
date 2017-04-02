@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import './home.scss';
+// import './home.scss';
 import Footer from './../common/Footer/Footer';
 
 

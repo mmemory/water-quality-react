@@ -1,12 +1,12 @@
-@import "./../../../../base-sass/main";
-
 .loading-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 50px;
-  width: 50px;
-  background-color: red;
-
+  height: 100px;
+  width: 100px;
+  background-color: transparent;
+  background-image: url('./../../../../assets/loading.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
 }

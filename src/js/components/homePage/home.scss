@@ -1,9 +1,7 @@
-@import "./../../../base-sass/main";
-
 .content-main {
 
   .hero-container {
-    background-image: url("./../../../assets/water-bg-small.jpg");
+    background-image: url("./../assets/water-bg-small.jpg");
     height: calc(100vh - #{$header-height});
     width: 100%;
     background-size: cover;
@@ -25,12 +23,12 @@
     }
 
     @include breakpoint($medium) {
-      background-image: url("./../../../assets/water-bg-medium.jpg");
+      background-image: url("./../assets/water-bg-medium.jpg");
       background-position-y: 50px;
     }
 
     @include breakpoint($large) {
-      background-image: url("./../../../assets/water-bg.jpg");
+      background-image: url("./../assets/water-bg.jpg");
       background-position-y: -25px;
       min-height: 600px;
     }
@@ -58,7 +56,7 @@
     }
 
     .desktop-image-container .desktop-image {
-      background-image: url("./../../../assets/macbook-template.png");
+      background-image: url("./../assets/macbook-template.png");
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center center;

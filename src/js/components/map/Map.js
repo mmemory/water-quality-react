@@ -1,6 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
-import './map.scss';
+// import './map.scss';
 import mapStyle from './map-style.json';
 
 const Circle = (props) => {
@@ -13,10 +13,6 @@ const Circle = (props) => {
 
 class Map extends React.Component {
 
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return true;
-    }
 
     createMapOptions(maps) {
 

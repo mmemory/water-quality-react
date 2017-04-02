@@ -1,12 +1,25 @@
+// Vendor
 @import '~singularitygs/stylesheets/singularitygs';
 @import '~breakpoint-sass/stylesheets/breakpoint';
 
+// Global Utility
 @import "partials/variables";
 @import "partials/breakpoints";
 @import "partials/reset";
 @import "partials/grids";
 @import "partials/mixins";
-@import "partials/typography";
 
+// Global Styles
+@import "partials/typography";
 @import "partials/buttons";
 @import "partials/layout";
+
+//Common Components
+@import "./../js/components/common/Header/header.scss";
+@import "./../js/components/common/Footer/footer.scss";
+@import "./../js/components/common/loader/loader.scss";
+
+//Components
+@import "./../js/components/homePage/home.scss";
+@import "./../js/components/map/map.scss";
+@import "./../js/components/toolBar/toolBar.scss";

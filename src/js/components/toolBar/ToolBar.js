@@ -1,5 +1,5 @@
 import React from 'react';
-import './toolBar.scss';
+// import './toolBar.scss';
 
 
 const MenuButton = (props) => {
