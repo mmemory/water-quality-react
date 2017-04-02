@@ -2,4 +2,6 @@
   background-color: $primary-color;
   height: $header-height;
   width: 100%;
+  position: relative;
+  z-index: 10000;
 }

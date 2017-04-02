@@ -1,6 +1,4 @@
 import React from 'react';
-// import './toolBar.scss';
-
 
 const MenuButton = (props) => {
 
@@ -18,13 +16,7 @@ const ToolBar = (props) => {
 
     return (
         <div className="toolbar-container">
-            <div className="master-width-wrapper">
 
-                <div className="menu-button-container">
-                    <MenuButton />
-                </div>
-
-            </div>
         </div>
     );
 };

@@ -71,10 +71,12 @@ class MapPage extends React.Component {
         let loaderStyle = this.state.showLoader ? {'display': 'block'} : {'display': 'none'};
 
         return (
-            <div className="map-container">
+            <div className="map-wrapper">
                 <ToolBar />
-                <Map {...this.state} />
-                <Loader style={loaderStyle}/>
+                <div className="map-container">
+                    <Map {...this.state} />
+                    <Loader style={loaderStyle}/>
+                </div>
             </div>
         )
     }

@@ -1,9 +1,14 @@
 .toolbar-container {
-  position: absolute;
-  height: $toolbar-height;
-  width: 100%;
+  float: left;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: relative;
+  bottom: 0;
+  width: 30%;
   background-color: rgba($white, .95);
   z-index: 1000;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
 
   .menu-button-container {
     height: 100%;
