@@ -2,6 +2,7 @@ import React from 'react';
 import Map from './../map/Map';
 import ToolBar from './../toolBar/ToolBar';
 import Loader from './../common/loader/Loader';
+import locationService from './../../services/locationService';
 
 class MapPage extends React.Component {
     constructor() {
@@ -15,27 +16,55 @@ class MapPage extends React.Component {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('PARENT',nextState);
-        return true;
+    locationByCity(city) {
+        locationService.locationByCity(city)
+            .then((data) => {
+                this.setState(data);
+            });
     }
 
-    componentWillMount() {
+    ipLocation() {
+        axios.get('http://ip-api.com/json')
+            .then((location) => {
+                console.log(location);
+                this.setState({
+                    lat: location.data.lat,
+                    lng: location.data.lon,
+                    zoom: 12,
+                    showLoader: false
+                })
+            }, (err) => {
+                console.log(err);
+            });
+    }
+
+    navigatorLocation() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position);
+            this.setState({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+                zoom: 12,
+                showLoader: false
+            });
+        }, (err) => {
+            console.log(err);
+            this.ipLocation();
+        });
+    }
+
+    componentDidMount() {
         this.setState({
             showLoader: true
         });
 
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                console.log(position);
-                this.setState({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                    zoom: 12,
-                    showLoader: false
-                });
-            });
+            this.navigatorLocation();
+        } else {
+            this.ipLocation();
         }
+
+        // this.locationByCity('Provo')
     }
 
     render() {
@@ -45,7 +74,7 @@ class MapPage extends React.Component {
             <div className="map-container">
                 <ToolBar />
                 <Map {...this.state} />
-                <Loader style={loaderStyle} />
+                <Loader style={loaderStyle}/>
             </div>
         )
     }

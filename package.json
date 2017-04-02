@@ -37,6 +37,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "body-parser": "^1.17.1",
     "breakpoint-sass": "^2.7.1",
     "cors": "^2.8.1",
