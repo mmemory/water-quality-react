@@ -1,54 +1,61 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
-// import './map.scss';
 import mapStyle from './map-style.json';
 
 const Circle = (props) => {
-    const customClass = props.$hover ? 'map-circle-hover' : 'map-circle';
 
     return (
-        <div style={props.style} className={customClass}></div>
+        <div style={props.style} className="map-circle"></div>
     );
 };
 
 class Map extends React.Component {
 
+    constructor(props) {
+        super();
+
+        this.state = {
+            defaultProps: {
+                center: {
+                    lat: props.lat,
+                    lng: props.lng
+                },
+                zoom: props.zoom
+            }
+        }
+    }
 
     createMapOptions(maps) {
-
-        return {
-            styles: mapStyle
-        };
+        return {styles: mapStyle};
     };
+
+    componentDidMount() {
+        this.setState({
+            lat: this.props.lat,
+            lng: this.props.lng
+        });
+    }
 
     render() {
 
-        let settings = {
-            center: {
-                lat: this.props.lat,
-                lng: this.props.lng
-            },
-            zoom: this.props.zoom
-        };
-
-        let defaultProps = {
-            center: {lat: 59.95, lng: 30.33},
-            zoom: 11
+        let center = {
+            lat: this.props.lat,
+            lng: this.props.lng
         };
 
         let circleStyle = this.props.showLoader ? {'display': 'none'} : {'display': 'block'};
 
-
         return (
             <GoogleMapReact
-                defaultCenter={settings.center}
+                defaultCenter={this.state.defaultProps.center}
                 bootstrapURLKeys={{key: 'AIzaSyCEnKcbM3rv45LbfeE21QWqgOPERexomXU'}}
-                defaultZoom={settings.zoom}
-                center={settings.center}
-                zoom={settings.zoom}
-                options={this.createMapOptions}>
+                defaultZoom={this.state.defaultProps.zoom}
+                center={center}
+                zoom={this.props.zoom}
+                options={this.createMapOptions}
+                resetBoundsOnResize={true}>
 
-                <Circle style={circleStyle} lat={settings.center.lat} lng={settings.center.lng}/>
+                <Circle style={circleStyle} lat={center.lat} lng={center.lng}/>
 
             </GoogleMapReact>
         );
