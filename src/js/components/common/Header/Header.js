@@ -7,10 +7,21 @@ class Header extends React.Component {
         return (
             <header className="main-header">
                 <div className="master-width-wrapper">
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/map">Map</Link></li>
-                    </ul>
+                    <div className="nav-left">
+                        <Link to="/">
+                            <div className="logo-container">
+                                <div className="water-logo"></div>
+                            </div>
+                        </Link>
+                    </div>
+
+                    <div className="nav-right">
+                        <ul>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/map">Map</Link></li>
+                        </ul>
+                    </div>
+
                 </div>
             </header>
         );
