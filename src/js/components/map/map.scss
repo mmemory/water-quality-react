@@ -3,9 +3,18 @@
 
   .map-container {
     float: left;
-    width: 70%;
     height: 100%;
     position: relative;
+
+    &.toolbar-open {
+      width: 70%;
+      transition: $toolbar-slide;
+    }
+
+    &.toolbar-closed {
+      width: calc(100% - #{$toolbar-closed});
+      transition: $toolbar-slide;
+    }
 
     .map-circle {
       height: 200px;

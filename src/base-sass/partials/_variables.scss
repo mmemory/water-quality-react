@@ -10,16 +10,20 @@ $primary-safe: rgb(85,181,159);
 $primary-danger-transparent: rgba($primary-danger, .32);
 $primary-safe-transparent: rgba($primary-safe, .32);
 
-//Fonts
+// Fonts
 $primary-font: 'Source Sans Pro', sans-serif;
 $bold-weight: 600;
 $medium-weight: 400;
 $light-weight: 300;
 $relative-font-size: 16px;
 
-//Dimensions
+// Dimensions
 $header-height: 75px;
 $footer-height: 100px;
 $master-max-width: 1280px;
 $toolbar-height: 35px;
+$toolbar-closed: 60px;
 $map-height: calc(100vh - #{$header-height});
+
+// Transitions
+$toolbar-slide: all .4s ease-in-out;
