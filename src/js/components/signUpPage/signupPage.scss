@@ -1,0 +1,25 @@
+.user-signup-container {
+  height: $map-height;
+
+  .login-container,
+  .signup-container {
+    width: 50%;
+    height: 100%;
+    float: left;
+
+    h2 {
+      margin-bottom: 30px;
+    }
+  }
+
+  .login-container {
+    border-right: solid 1px $primary-color;
+    padding-right: 60px;
+
+  }
+
+  .signup-container {
+    padding-left: 60px;
+
+  }
+}

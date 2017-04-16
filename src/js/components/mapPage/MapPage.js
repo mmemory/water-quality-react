@@ -18,7 +18,7 @@ class MapPage extends React.Component {
             showLoader: false,
             toolbarOpen: true,
             waterData: {
-                activity: []
+                organization: []
             }
         };
 
@@ -62,9 +62,11 @@ class MapPage extends React.Component {
         waterData.getDataByCurrentLocation(coords)
             .then(waterData => {
                 console.log(waterData);
-                this.setState({
-                    waterData: {activity: waterData.Organization.Activity}
-                });
+                if(waterData.Organization) {
+                    this.setState({
+                        waterData: {organization: waterData.Organization}
+                    });
+                }
             });
     }
 
@@ -96,7 +98,7 @@ class MapPage extends React.Component {
 
         return (
             <div className="map-wrapper">
-                <ToolBar activity={this.state.waterData.activity}
+                <ToolBar organization={this.state.waterData.organization}
                          toolbarOpen={this.state.toolbarOpen}
                          handleToolbarOpen={this.handleToolbarOpen}/>
                 <div className={mapClasses}>
