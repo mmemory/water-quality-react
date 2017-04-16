@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import parseData from './../../services/parseDataService';
 import keyGen from 'random-key';
 
 const MenuButton = (props) => {
@@ -22,27 +23,7 @@ const ToolBar = (props) => {
         'toolbar-open': props.toolbarOpen
     });
 
-    let waterResults = [],
-        latest = {};
-
-    props.organization.forEach(function (d) {
-
-        d.Activity.forEach(function (a) {
-
-            a.Result.forEach(function (r) {
-                let name = r.ResultDescription.CharacteristicName.text;
-                let resultDate = new Date(r.ResultLabInformation.AnalysisStartDate.text);
-
-                if ((!latest[name] || latest[name].time < resultDate.getTime()) && r.ResultDescription.ResultMeasure && r.ResultDescription.ResultMeasure.ResultMeasureValue) {
-                    latest[name] = {time: resultDate.getTime(), data: r};
-                }
-            });
-        });
-    });
-
-    for (let k in latest) {
-        waterResults.push(latest[k].data);
-    }
+    let waterResults = parseData.formatData(props.organization);
 
     waterResults = waterResults.map(function (r) {
         let name = r.ResultDescription.CharacteristicName.text;

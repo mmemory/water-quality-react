@@ -12,6 +12,31 @@ let parseHelpers = {
         return `${twoDigitMonth}-${twoDigitDate}-${d.getFullYear()}`;
     },
 
+    formatData: function (data) {
+        let latest = {},
+            waterResults = []
+        data.forEach(function (d) {
+
+            d.Activity.forEach(function (a) {
+
+                a.Result.forEach(function (r) {
+                    let name = r.ResultDescription.CharacteristicName.text;
+                    let resultDate = new Date(r.ResultLabInformation.AnalysisStartDate.text);
+
+                    if ((!latest[name] || latest[name].time < resultDate.getTime()) && r.ResultDescription.ResultMeasure && r.ResultDescription.ResultMeasure.ResultMeasureValue) {
+                        latest[name] = {time: resultDate.getTime(), data: r};
+                    }
+                });
+            });
+        });
+
+        for (let k in latest) {
+            waterResults.push(latest[k].data);
+        }
+
+        return waterResults;
+    },
+
     xmlToJson: (xml) => {
         // Create the return object
         let obj = {};
