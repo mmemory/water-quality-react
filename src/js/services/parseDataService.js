@@ -3,7 +3,7 @@ let parseHelpers = {
     // mm-dd-yyyy
     parseDate: function (date) {
         let d = date ? new Date(date) : new Date();
-        d.setMonth(d.getMonth() - 12);
+        d.setMonth(d.getMonth() - 24);
         d.setHours(0, 0, 0);
 
         let twoDigitDate = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
@@ -42,7 +42,7 @@ let parseHelpers = {
                     /* Possible to have more than one organization. The following logic puts the organization object in an array
                     even if there is only one organization. Makes it more predictable to sift through the data
                     knowing that there will always be an array */
-                    if(item.nodeName === "Organization" && typeof(item.push) !== "undefined") {
+                    if(nodeName === "Organization" || nodeName === "Activity" || nodeName === "Result") {
                         obj[nodeName] = [parseHelpers.xmlToJson(item)];
                     } else {
                         obj[nodeName] = parseHelpers.xmlToJson(item);

@@ -5,7 +5,12 @@ import keyGen from 'random-key';
 const MenuButton = (props) => {
 
     return (
-        <div className="menu-button" onClick={props.handleToolbarOpen}></div>
+        <div className="menu-icon" onClick={props.handleToolbarOpen}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     );
 };
 
@@ -17,29 +22,33 @@ const ToolBar = (props) => {
         'toolbar-open': props.toolbarOpen
     });
 
-    let waterData = [];
+    let waterResults = [],
+        latest = {};
 
-    props.activity.forEach(function(item) {
+    props.organization.forEach(function (d) {
 
-        if (item.Result instanceof Array) {
-            waterData = [
-                ...waterData,
-                ...item.Result
-            ];
-        } else if (item.Result.ResultDescription) {
-            waterData.push(item);
-        }
+        d.Activity.forEach(function (a) {
+
+            a.Result.forEach(function (r) {
+                let name = r.ResultDescription.CharacteristicName.text;
+                let resultDate = new Date(r.ResultLabInformation.AnalysisStartDate.text);
+
+                if ((!latest[name] || latest[name].time < resultDate.getTime()) && r.ResultDescription.ResultMeasure && r.ResultDescription.ResultMeasure.ResultMeasureValue) {
+                    latest[name] = {time: resultDate.getTime(), data: r};
+                }
+            });
+        });
     });
 
-    waterData = waterData.map(function(d) {
-        if(d && d.ResultDescription && d.ResultDescription.ResultMeasure) {
-            return (
-                <li key={keyGen.generate()}>
-                    <span>{d.ResultDescription.CharacteristicName.text}: </span>
-                    <span>{d.ResultDescription.ResultMeasure.ResultMeasureValue.text} {d.ResultDescription.ResultMeasure.MeasureUnitCode.text}</span>
-                </li>
-            );
-        }
+    for (let k in latest) {
+        waterResults.push(latest[k].data);
+    }
+
+    waterResults = waterResults.map(function (r) {
+        let name = r.ResultDescription.CharacteristicName.text;
+        let result = r.ResultDescription.ResultMeasure.ResultMeasureValue.text;
+        let unit = r.ResultDescription.ResultMeasure.MeasureUnitCode.text;
+        return (<li key={keyGen.generate()}>{name}: {result} {unit}</li>);
     });
 
     return (
@@ -48,7 +57,7 @@ const ToolBar = (props) => {
 
             <div className="water-data">
                 <ul>
-                    {waterData}
+                    {waterResults}
                 </ul>
             </div>
         </div>
