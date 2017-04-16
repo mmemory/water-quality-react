@@ -1,9 +1,18 @@
 import React from 'react';
-// import './loader.scss';
+import classNames from 'classnames';
 
 const Loader = (props) => {
+
+    let loaderClasses = classNames({
+        'loader-wrapper': true,
+        'loading-data': props.loading
+    });
+
     return (
-        <div style={props.style} className="loading-container"></div>
+        <div className={loaderClasses}>
+            <div className="loading-container"></div>
+            {props.children}
+        </div>
     )
 };
 

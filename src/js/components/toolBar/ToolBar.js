@@ -2,9 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 import parseData from './../../services/parseDataService';
 import keyGen from 'random-key';
+import Loader from './../common/loader/Loader';
 
 const MenuButton = (props) => {
-
     return (
         <div className="menu-icon" onClick={props.handleToolbarOpen}>
             <span></span>
@@ -15,34 +15,41 @@ const MenuButton = (props) => {
     );
 };
 
-const ToolBar = (props) => {
+class ToolBar extends React.Component {
 
-    let toolbarClasses = classNames({
-        'toolbar-container': true,
-        'toolbar-closed': !props.toolbarOpen,
-        'toolbar-open': props.toolbarOpen
-    });
+    shouldComponentUpdate(nextProps) {
+        return nextProps.organization.length > 0
+    }
 
-    let waterResults = parseData.formatData(props.organization);
+    render() {
+        let toolbarClasses = classNames({
+            'toolbar-container': true,
+            'toolbar-closed': !this.props.toolbarOpen,
+            'toolbar-open': this.props.toolbarOpen
+        });
 
-    waterResults = waterResults.map(function (r) {
-        let name = r.ResultDescription.CharacteristicName.text;
-        let result = r.ResultDescription.ResultMeasure.ResultMeasureValue.text;
-        let unit = r.ResultDescription.ResultMeasure.MeasureUnitCode.text;
-        return (<li key={keyGen.generate()}>{name}: {result} {unit}</li>);
-    });
+        let waterResults = parseData.formatData(this.props.organization).map(function (r) {
+            let name = r.ResultDescription.CharacteristicName.text;
+            let result = r.ResultDescription.ResultMeasure.ResultMeasureValue.text;
+            let unit = r.ResultDescription.ResultMeasure.MeasureUnitCode.text;
+            return (<li key={keyGen.generate()}>{name}: {result} {unit}</li>);
+        });
 
-    return (
-        <div className={toolbarClasses}>
-            <MenuButton handleToolbarOpen={props.handleToolbarOpen}/>
+        return (
+            <div className={toolbarClasses}>
+                <Loader loading={(this.props.organization.length === 0)}>
+                    <p>Getting data</p>
+                </Loader>
+                <MenuButton handleToolbarOpen={this.props.handleToolbarOpen}/>
 
-            <div className="water-data">
-                <ul>
-                    {waterResults}
-                </ul>
+                <div className="water-data">
+                    <ul>
+                        {waterResults}
+                    </ul>
+                </div>
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 export default ToolBar;

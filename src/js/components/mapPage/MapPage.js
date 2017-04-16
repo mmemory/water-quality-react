@@ -88,8 +88,6 @@ class MapPage extends React.Component {
     }
 
     render() {
-        let loaderStyle = this.state.showLoader ? {'display': 'block'} : {'display': 'none'};
-
         let mapClasses = classNames({
             'map-container': true,
             'toolbar-open': this.state.toolbarOpen,
@@ -103,7 +101,7 @@ class MapPage extends React.Component {
                          handleToolbarOpen={this.handleToolbarOpen}/>
                 <div className={mapClasses}>
                     <Map {...this.state} />
-                    <Loader style={loaderStyle}/>
+                    <Loader loading={this.state.showLoader}/>
                 </div>
             </div>
         )
