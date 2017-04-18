@@ -3,7 +3,7 @@ let parseHelpers = {
     // mm-dd-yyyy
     parseDate: function (date) {
         let d = date ? new Date(date) : new Date();
-        d.setMonth(d.getMonth() - 24);
+        d.setMonth(d.getMonth() - 36);
         d.setHours(0, 0, 0);
 
         let twoDigitDate = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
@@ -12,19 +12,29 @@ let parseHelpers = {
         return `${twoDigitMonth}-${twoDigitDate}-${d.getFullYear()}`;
     },
 
+    makeCharacteristicNames: function (charData) {
+        let charNames = [];
+        for (let char in charData) {
+            charNames.push(char);
+        }
+        return charNames.join(';')
+    },
+
     formatData: function (data) {
         let latest = {},
-            waterResults = []
+            waterResults = [];
         data.forEach(function (d) {
 
             d.Activity.forEach(function (a) {
 
                 a.Result.forEach(function (r) {
-                    let name = r.ResultDescription.CharacteristicName.text;
-                    let resultDate = new Date(r.ResultLabInformation.AnalysisStartDate.text);
+                    if (r.ResultLabInformation && r.ResultLabInformation.AnalysisStartDate) {
+                        let name = r.ResultDescription.CharacteristicName.text;
+                        let resultDate = new Date(r.ResultLabInformation.AnalysisStartDate.text);
 
-                    if ((!latest[name] || latest[name].time < resultDate.getTime()) && r.ResultDescription.ResultMeasure && r.ResultDescription.ResultMeasure.ResultMeasureValue) {
-                        latest[name] = {time: resultDate.getTime(), data: r};
+                        if ((!latest[name] || latest[name].time < resultDate.getTime()) && r.ResultDescription.ResultMeasure && r.ResultDescription.ResultMeasure.ResultMeasureValue) {
+                            latest[name] = {time: resultDate.getTime(), data: r};
+                        }
                     }
                 });
             });
@@ -65,9 +75,9 @@ let parseHelpers = {
                     obj[nodeName] = parseHelpers.xmlToJson(item);
                 } else if (typeof(obj[nodeName]) === "undefined") {
                     /* Possible to have more than one organization. The following logic puts the organization object in an array
-                    even if there is only one organization. Makes it more predictable to sift through the data
-                    knowing that there will always be an array */
-                    if(nodeName === "Organization" || nodeName === "Activity" || nodeName === "Result") {
+                     even if there is only one organization. Makes it more predictable to sift through the data
+                     knowing that there will always be an array */
+                    if (nodeName === "Organization" || nodeName === "Activity" || nodeName === "Result") {
                         obj[nodeName] = [parseHelpers.xmlToJson(item)];
                     } else {
                         obj[nodeName] = parseHelpers.xmlToJson(item);

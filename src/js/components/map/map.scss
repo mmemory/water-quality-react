@@ -7,7 +7,7 @@
     position: relative;
 
     &.toolbar-open {
-      width: 70%;
+      width: calc(100% - 370px);
       transition: $toolbar-slide;
     }
 
@@ -19,7 +19,7 @@
     .map-circle {
       height: 200px;
       width: 200px;
-      background-color: rgba(green, .5);
+      background-color: $primary-safe-transparent;
       border-radius: 50%;
       transform: translate(-50%, -50%);
     }

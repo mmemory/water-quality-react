@@ -8,6 +8,52 @@
   background-color: rgba($white, .95);
   z-index: 1000;
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  padding-top: 45px;
+  padding-bottom: 45px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  .hide-form {
+    display: none;
+  }
+
+  .location-search {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 30px;
+    width: 80%;
+
+    form,
+    form input {
+      height: 100%;
+      width: 100%;
+    }
+
+    form input {
+      border-style: solid;
+      border-width: 1px;
+      border-color: $primary-color;
+      color: $body-copy-color;
+      font-weight: $light-weight;
+      font-size: 1rem;
+    }
+
+    form input:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 5px $primary-color;
+    }
+  }
+
+  p {
+    line-height: 1.5rem;
+
+    &.data-message {
+      text-align: center;
+      margin: 20px;
+    }
+  }
 
   .menu-icon {
     height: 20px;
@@ -17,6 +63,7 @@
     right: 20px;
     transform: rotate(0deg);
     transition: .4s ease-in-out;
+    transition-delay: .3s;
     cursor: pointer;
   }
 
@@ -31,36 +78,38 @@
     left: 0;
     transform: rotate(0deg);
     transition: .4s ease-in-out;
+    transition-delay: .3s;
   }
 
   .menu-icon span:nth-child(1) {
-    top: 0;
+    top: 3px;
   }
 
-  .menu-icon span:nth-child(2),#nav-icon3 span:nth-child(3) {
-    top: 6px;
+  .menu-icon span:nth-child(2),
+  .menu-icon span:nth-child(3) {
+    top: 8px;
   }
 
   .menu-icon span:nth-child(4) {
-    top: 12px;
+    top: 13px;
   }
 
   &.toolbar-closed {
     width: 60px;
     transition: $toolbar-slide;
 
-    .water-data {
+    .water-content-container {
       display: none;
     }
   }
 
   &.toolbar-open {
-    width: 30%;
+    width: 370px;
     transition: $toolbar-slide;
 
-    .water-data {
-      display: block;
-    }
+    //.water-content-container {
+    //  display: block;
+    //}
 
     .menu-icon span:nth-child(1) {
       top: 18px;
@@ -70,17 +119,69 @@
 
     .menu-icon span:nth-child(2) {
       transform: rotate(45deg);
-      top: 0;
     }
 
     .menu-icon span:nth-child(3) {
       transform: rotate(-45deg);
     }
 
+    .menu-icon span:nth-child(2),
+    .menu-icon span:nth-child(3) {
+      top: 8px;
+    }
+
     .menu-icon span:nth-child(4) {
       top: 12px;
       width: 0;
       left: 50%;
+    }
+  }
+
+  .metric-titles-container,
+  .metric-results-container {
+    float: left;
+    width: 50%;
+
+    p {
+      user-select: none;
+    }
+  }
+
+  .water-data {
+    @include clearfix();
+  }
+
+  .metric-titles-container {
+
+    .title-bar {
+      height: 45px;
+      width: 100%;
+      padding-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .title-bar p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .water-content-container {
+    padding: 0 20px;
+    display: none;
+    min-width: 370px;
+
+    h2 {
+      margin: 10px 0;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    &.show-content{
+      display: block;
     }
   }
 }

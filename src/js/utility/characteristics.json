@@ -1,0 +1,42 @@
+{
+  "Fluoride": {
+    "ug/l": 2000,
+    "mg/l": 2
+  },
+  "Sulfate": {
+    "ug/l": 250000,
+    "mg/l": 250
+  },
+  "Total dissolved solids": {
+    "ug/l": 500000,
+    "mg/l": 500
+  },
+  "Aluminum": {
+    "ug/l": 200,
+    "mg/l": 0.2
+  },
+  "Chloride": {
+    "ug/l": 250000,
+    "mg/l": 250
+  },
+  "Iron": {
+    "ug/l": 300,
+    "mg/l": 0.3
+  },
+  "Manganese": {
+    "ug/l": 50,
+    "mg/l": 0.05
+  },
+  "Silver": {
+    "ug/l": 100,
+    "mg/l": 0.10
+  },
+  "Zinc": {
+    "ug/l": 5000,
+    "mg/l": 5
+  },
+  "Copper": {
+    "ug/l": 1000,
+    "mg/l": 1
+  }
+}

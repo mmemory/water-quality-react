@@ -3,12 +3,21 @@ $primary-color: #A7C8DB;
 $secondary-color: #1F3542;
 $tertiary-color: #323D42;
 $body-copy-color: #95989A;
+$gray: #C7C7C7;
+$light-gray: lighten($gray, 15);
 $white: white;
 
 $primary-danger: rgb(195,58,40);
+$primary-danger-light: lighten(rgb(195,58,40), 20);
 $primary-safe: rgb(85,181,159);
-$primary-danger-transparent: rgba($primary-danger, .32);
+$primary-warning: rgba(#E3CD85, .5);
+$primary-danger-transparent: rgba($primary-danger-light, .32);
 $primary-safe-transparent: rgba($primary-safe, .32);
+
+$metric-bar-background: $light-gray;
+$metric-bar-foreground-safe: $primary-safe-transparent;
+$metric-bar-foreground-danger: $primary-danger-transparent;
+$metric-bar-foreground-warning: $primary-warning;
 
 // Fonts
 $primary-font: 'Source Sans Pro', sans-serif;
