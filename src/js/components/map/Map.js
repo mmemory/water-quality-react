@@ -12,7 +12,7 @@ const Circle = (props) => {
 class Map extends React.Component {
 
     constructor(props) {
-        super();
+        super(props);
 
         this.state = {
             defaultProps: {
@@ -21,20 +21,39 @@ class Map extends React.Component {
                     lng: props.lng
                 },
                 zoom: props.zoom
-            }
-        }
+            },
+            circle: null
+        };
+
+        this.googleApiLoaded = this.googleApiLoaded.bind(this);
     }
 
     createMapOptions(maps) {
-        return {styles: mapStyle};
-    };
+        console.log(maps);
 
-    componentDidMount() {
-        this.setState({
-            lat: this.props.lat,
-            lng: this.props.lng
-        });
+        return {styles: mapStyle};
     }
+
+    // componentDidMount() {
+    //     this.setState({
+    //         lat: this.props.lat,
+    //         lng: this.props.lng
+    //     });
+    // }
+
+    googleApiLoaded(map, maps) {
+
+
+        let circle = new google.maps.Circle({
+            setMap: map,
+            radius: 804672,
+            fillColor: 'red'
+        });
+
+        this.setState({
+            circle
+        });
+    };
 
     render() {
 
@@ -42,6 +61,10 @@ class Map extends React.Component {
             lat: this.props.lat,
             lng: this.props.lng
         };
+
+        if(this.state.circle) {
+            this.state.circle.setCenter(center);
+        }
 
         let circleStyle = this.props.showLoader ? {'display': 'none'} : {'display': 'block'};
 
@@ -53,7 +76,9 @@ class Map extends React.Component {
                 center={center}
                 zoom={this.props.zoom}
                 options={this.createMapOptions}
-                resetBoundsOnResize={true}>
+                resetBoundsOnResize={true}
+                onGoogleApiLoaded={this.googleApiLoaded}
+                yesIWantToUseGoogleMapApiInternals={true}>
 
                 <Circle style={circleStyle} lat={center.lat} lng={center.lng}/>
 

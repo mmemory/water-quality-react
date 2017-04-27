@@ -33,6 +33,9 @@ $master-max-width: 1280px;
 $toolbar-height: 35px;
 $toolbar-closed: 60px;
 $map-height: calc(100vh - #{$header-height});
+$toolbar-width: 400px;
+$map-width: calc(100% - #{$toolbar-width});
+
 
 // Transitions
 $toolbar-slide: all .4s ease-in-out;

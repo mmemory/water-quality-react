@@ -7,20 +7,44 @@
   bottom: 0;
   background-color: rgba($white, .95);
   z-index: 1000;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  padding-top: 45px;
-  padding-bottom: 45px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  padding-top: 20px;
+  padding-bottom: 20px;
   overflow-x: hidden;
   overflow-y: auto;
+
+  .toolbar-top,
+  .water-data {
+    @include clearfix();
+  }
+
+  .toolbar-top {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+
+    .menu-button-container,
+    .location-search {
+      float: left;
+    }
+
+    .menu-button-container {
+      width: 20px;
+    }
+
+    .location-search {
+      width: calc(100% - 20px);
+      padding-right: 20px;
+    }
+  }
 
   .hide-form {
     display: none;
   }
 
   .location-search {
-    position: absolute;
-    top: 20px;
-    left: 20px;
     height: 30px;
     width: 80%;
 
@@ -32,11 +56,12 @@
 
     form input {
       border-style: solid;
-      border-width: 1px;
+      border-width: 3px;
       border-color: $primary-color;
       color: $body-copy-color;
       font-weight: $light-weight;
       font-size: 1rem;
+      padding-left: 5px;
     }
 
     form input:focus {
@@ -58,9 +83,6 @@
   .menu-icon {
     height: 20px;
     width: 20px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
     transform: rotate(0deg);
     transition: .4s ease-in-out;
     transition-delay: .3s;
@@ -98,18 +120,24 @@
     width: 60px;
     transition: $toolbar-slide;
 
+    .location-search {
+      width: 0;
+      transition: $toolbar-slide;
+      padding: 0;
+
+      input {
+        display: none;
+      }
+    }
+
     .water-content-container {
       display: none;
     }
   }
 
   &.toolbar-open {
-    width: 370px;
+    width: $toolbar-width;
     transition: $toolbar-slide;
-
-    //.water-content-container {
-    //  display: block;
-    //}
 
     .menu-icon span:nth-child(1) {
       top: 18px;
@@ -137,40 +165,10 @@
     }
   }
 
-  .metric-titles-container,
-  .metric-results-container {
-    float: left;
-    width: 50%;
-
-    p {
-      user-select: none;
-    }
-  }
-
-  .water-data {
-    @include clearfix();
-  }
-
-  .metric-titles-container {
-
-    .title-bar {
-      height: 45px;
-      width: 100%;
-      padding-right: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-
-    .title-bar p {
-      font-size: 1.1rem;
-    }
-  }
-
   .water-content-container {
     padding: 0 20px;
     display: none;
-    min-width: 370px;
+    min-width: $toolbar-width;
 
     h2 {
       margin: 10px 0;
@@ -180,19 +178,8 @@
       margin: 10px 0;
     }
 
-    &.show-content{
+    &.show-content {
       display: block;
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-

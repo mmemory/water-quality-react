@@ -3,8 +3,7 @@ import classNames from 'classnames';
 import parseData from './../../services/parseDataService';
 import keyGen from 'random-key';
 import Loader from './../common/loader/Loader';
-import MetricBar from '../metricBar/MetricBar';
-import fedLimits from '../../utility/characteristics.json';
+import MetricResults from '../metricResults/MetricResults';
 
 const MenuButton = (props) => {
     return (
@@ -41,64 +40,36 @@ class ToolBar extends React.Component {
             'location-search': true
         });
 
-        let data = parseData.formatData(this.props.waterData.organization);
-
-        let waterResults = data.map(function (r) {
-            let name = r.ResultDescription.CharacteristicName.text;
-            let result = r.ResultDescription.ResultMeasure.ResultMeasureValue.text;
-            let unit = r.ResultDescription.ResultMeasure.MeasureUnitCode.text;
-            return (
-                <MetricBar key={keyGen.generate()}
-                           measurement={result}
-                           unit={unit}
-                           name={name}
-                           fedLimit={fedLimits[name][unit]}/>
-            );
-        });
-
-        let titles = data.map(function (r) {
-            let name = r.ResultDescription.CharacteristicName.text;
-            return (
-                <div key={keyGen.generate()} className="title-bar">
-                    <p>{name}</p>
-                </div>
-            );
-        });
-
         return (
             <div className={toolbarClasses}>
-                <MenuButton handleClick={this.props.handleClick}/>
-                <Loader loading={this.props.loadingData}/>
-                <p className="data-message">{this.props.loadedMessage}</p>
+                <Loader loading={this.props.loadingData && this.props.toolbarOpen}/>
 
-                <div className={formClasses}>
-                    <form onSubmit={this.props.handleSubmit}>
-                        <input type="text"
-                               placeholder="Search by location"
-                               onChange={this.props.handleChange} value={this.props.searchVal}/>
-                    </form>
-                </div>
-
-                <div className={waterContentClasses}>
+                <div className="toolbar-top">
                     <div className="location-search">
                         <form onSubmit={this.props.handleSubmit}>
                             <input type="text"
                                    placeholder="Search by location"
-                                   onChange={this.props.handleChange} value={this.props.searchVal}/>
+                                   onChange={this.props.handleChange}
+                                   value={this.props.searchVal}/>
                         </form>
                     </div>
+                    <div className="menu-button-container">
+                        <MenuButton handleClick={this.props.handleClick}/>
+                    </div>
+                </div>
+
+                <p className="data-message">{this.props.loadedMessage && this.props.toolbarOpen}</p>
+
+                <div className={waterContentClasses}>
 
                     <div className="water-intro">
                         {/*<h2>Data</h2>*/}
                     </div>
 
                     <div className="water-data">
-                        <div className="metric-titles-container">
-                            {titles}
-                        </div>
-                        <div className="metric-results-container">
-                            {waterResults}
-                        </div>
+                        <MetricResults openInfo={this.props.openInfo}
+                                       results={this.props.waterData.organization}
+                                       handleBarClick={this.props.handleBarClick}/>
                     </div>
 
                     <div className="water-info">

@@ -12,6 +12,24 @@ let parseHelpers = {
         return `${twoDigitMonth}-${twoDigitDate}-${d.getFullYear()}`;
     },
 
+    calculateMeasurementPercent: function (props) {
+        let barLimit = props.fedLimit;
+        let barMax = barLimit + (barLimit * .25);
+        let percentWidth = (Number(props.measurement) / barMax) * 100;
+        let realWidth = percentWidth > 100 ? 100 : percentWidth;
+        let barStyle = {'width': `${realWidth}%`};
+        let limitStyle = {'left': `75%`};
+
+        return {
+            barLimit,
+            barMax,
+            percentWidth,
+            realWidth,
+            barStyle,
+            limitStyle
+        }
+    },
+
     makeCharacteristicNames: function (charData) {
         let charNames = [];
         for (let char in charData) {
@@ -23,9 +41,9 @@ let parseHelpers = {
     formatData: function (data) {
         let latest = {},
             waterResults = [];
-        data.forEach(function (d) {
+        data.forEach(function (o) {
 
-            d.Activity.forEach(function (a) {
+            o.Activity.forEach(function (a) {
 
                 a.Result.forEach(function (r) {
                     if (r.ResultLabInformation && r.ResultLabInformation.AnalysisStartDate) {
@@ -33,7 +51,7 @@ let parseHelpers = {
                         let resultDate = new Date(r.ResultLabInformation.AnalysisStartDate.text);
 
                         if ((!latest[name] || latest[name].time < resultDate.getTime()) && r.ResultDescription.ResultMeasure && r.ResultDescription.ResultMeasure.ResultMeasureValue) {
-                            latest[name] = {time: resultDate.getTime(), data: r};
+                            latest[name] = {time: resultDate.getTime(), data: r, organization: o.OrganizationDescription};
                         }
                     }
                 });
@@ -41,7 +59,7 @@ let parseHelpers = {
         });
 
         for (let k in latest) {
-            waterResults.push(latest[k].data);
+            waterResults.push(latest[k]);
         }
 
         return waterResults;

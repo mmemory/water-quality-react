@@ -7,7 +7,7 @@
     position: relative;
 
     &.toolbar-open {
-      width: calc(100% - 370px);
+      width: $map-width;
       transition: $toolbar-slide;
     }
 

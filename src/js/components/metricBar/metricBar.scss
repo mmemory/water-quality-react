@@ -1,45 +1,100 @@
-.metric-bar {
-  height: 45px;
-  width: 100%;
-  background-color: $metric-bar-background;
-  position: relative;
+.metric-bar-wrapper {
 
-  .limit-marker {
-    height: 100%;
-    width: 2px;
-    background-color: $primary-danger;
-    position: absolute;
-  }
-
-  .measurement-bar {
-    position: absolute;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 5px;
+  .metric-bar-container {
+    @include clearfix();
 
     p {
-      white-space: nowrap;
+      user-select: none;
     }
 
-    &.danger {
-      background-color: $metric-bar-foreground-danger;
-
-      //p {
-      //  color: $white;
-      //}
+    .metric-bar,
+    .metric-title-container {
+      height: 45px;
+      position: relative;
+      float: left;
+      width: 50%;
     }
 
-    &.safe {
-      background-color: $metric-bar-foreground-safe;
+    .metric-bar {
+      background-color: $metric-bar-background;
+
+      .limit-marker {
+        height: 100%;
+        width: 2px;
+        background-color: $primary-danger;
+        position: absolute;
+      }
+
+      .measurement-bar {
+        position: absolute;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+
+        p {
+          white-space: nowrap;
+        }
+
+        &.danger {
+          background-color: $metric-bar-foreground-danger;
+        }
+
+        &.safe {
+          background-color: $metric-bar-foreground-safe;
+        }
+
+        &.warning {
+          background-color: $metric-bar-foreground-warning;
+        }
+      }
     }
 
-    &.warning {
-      background-color: $metric-bar-foreground-warning;
+    .metric-title-container {
+      padding-right: 10px;
+      text-align: right;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $metric-bar-background;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
     }
   }
 
-  &:hover {
-    background-color: lighten($metric-bar-background, 2);
+  .metric-info-container {
+    width: 100%;
+    max-height: 0;
+    transition: max-height .2s ease-in-out;
+    border-bottom: none;
+    overflow: hidden;
+
+    p {
+      margin: 0;
+    }
+
+    p span {
+      font-weight: $bold-weight;
+    }
+
+    .metric-padding-container {
+      padding: 10px 0;
+      border-bottom: solid 3px $primary-color;
+    }
+  }
+
+  &.show-content {
+
+    .metric-title-container {
+      background-color: $metric-bar-background;
+    }
+
+    .metric-info-container {
+      transition: max-height .2s ease-in-out;
+      max-height: 200px;
+    }
   }
 }

@@ -22,12 +22,14 @@ class MapPage extends React.Component {
             noData: false,
             loadedMessage: '',
             searchArea: 20,
-            searchVal: ''
+            searchVal: '',
+            openInfo: false
         };
 
         this.handleToolbarOpen = this.handleToolbarOpen.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleBarClick = this.handleBarClick.bind(this);
     }
 
     locationByCity(city) {
@@ -42,7 +44,9 @@ class MapPage extends React.Component {
                     lat: data.lat,
                     lng: data.lng,
                     noData: false,
-                    loadedMessage: ''
+                    loadedMessage: '',
+                    showLoader: false,
+                    zoom: 12
                 });
             });
     }
@@ -123,6 +127,10 @@ class MapPage extends React.Component {
         this.setState({searchVal: e.target.value});
     }
 
+    handleBarClick(e) {
+        this.setState({openInfo: !this.state.openInfo});
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         this.locationByCity(this.state.searchVal);
@@ -140,6 +148,7 @@ class MapPage extends React.Component {
                 <ToolBar handleClick={this.handleToolbarOpen}
                          handleChange={this.handleChange}
                          handleSubmit={this.handleSubmit}
+                         handleBarClick={this.handleBarClick}
                          {...this.state}/>
 
                 <div className={mapClasses}>
