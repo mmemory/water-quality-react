@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-// import './home.scss';
 import Footer from './../common/Footer/Footer';
+import ShowcaseContainer from './showcaseContainer/showcaseContainer';
 
 
 const Home = () => {
@@ -22,23 +22,7 @@ const Home = () => {
                 </div>
             </section>
             <main>
-                <section className="desktop-showcase-container">
-                    <div className="master-width-wrapper">
-                        <header className="">
-                            <h2 className="hero-title">What's in your water?</h2>
-                        </header>
-                        <main>
-                            <div className="desktop-image-container">
-                                <div className="desktop-image"></div>
-                            </div>
-
-                            <p>This is some test text</p>
-                            <p>This is some test text</p>
-
-                        </main>
-
-                    </div>
-                </section>
+                <ShowcaseContainer/>
 
                 <section className="action-call">
                     <Link to="/map">
@@ -49,7 +33,6 @@ const Home = () => {
                 </section>
                 <section className="mobile-showcase-container">
                     <div className="master-width-wrapper">
-
 
 
                     </div>
