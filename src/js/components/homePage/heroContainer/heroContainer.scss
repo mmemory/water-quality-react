@@ -1,0 +1,33 @@
+.hero-container {
+  background-image: url("./../assets/water-bg-small.jpg");
+  height: calc(100vh - #{$header-height});
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: -50px;
+  position: relative;
+  max-height: 1200px;
+
+  .title-container {
+    position: absolute;
+    top: 10%;
+  }
+
+  @include ghost-button($primary-color, $white, small);
+
+  .ghost-btn {
+    display: inline-block;
+
+  }
+
+  @include breakpoint($medium) {
+    background-image: url("./../assets/water-bg-medium.jpg");
+    background-position-y: 50px;
+  }
+
+  @include breakpoint($large) {
+    background-image: url("./../assets/water-bg.jpg");
+    background-position-y: -25px;
+    min-height: 600px;
+  }
+}
