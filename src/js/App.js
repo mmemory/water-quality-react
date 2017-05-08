@@ -4,16 +4,11 @@ import Header from './components/common/Header/Header';
 import Home from './components/homePage/Home';
 import MapPage from './components/mapPage/MapPage';
 import SignupPage from './components/signUpPage/SignupPage';
-// import LoginPage from './components/loginPage/LoginPage';
-import './../base-sass/_main.scss';
 import axios from 'axios';
+import './../base-sass/_main.scss';
+import NotFound from './404';
 
-const NotFound = (props) => {
-    return (<h1>Sorry the page you are looking for is not this one!</h1>);
-};
-
-
-const auth = {
+let auth = {
     isAuthenticated: false,
     authenticate(values, cb) {
         let payload = {
@@ -57,7 +52,6 @@ class Routes extends React.Component {
                         {/*<Route path="/signup" component={SignupPage}/>*/}
                         <Route component={NotFound} />
                     </Switch>
-
                 </div>
             </Router>
         );
@@ -79,11 +73,9 @@ class LoginPage extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-
     login(e) {
         e.preventDefault();
         auth.authenticate(this.state, (data) => {
-            console.log(data);
             this.setState({redirectToReferrer: true})
         });
     };
@@ -105,7 +97,8 @@ class LoginPage extends React.Component {
         }
 
         return (
-            <div>
+            <div className="temp-login">
+                <h2 className="hero-title">Admin Login</h2>
                 <input
                     name="username"
                     type="text"
@@ -120,11 +113,12 @@ class LoginPage extends React.Component {
                     value={this.state.password}
                     onChange={this.handleInputChange}/>
 
-                <button onClick={this.login}>Login</button>
+                <div className="login-btn" onClick={this.login}>Login</div>
             </div>
         );
     }
 }
+
 
 class App extends React.Component {
     render() {

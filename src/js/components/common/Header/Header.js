@@ -6,7 +6,7 @@ const Header = (props) => {
         <header className="main-header">
             <div className="header-width-wrapper">
                 <div className="nav-left">
-                    <Link to="/">
+                    <Link to="/home">
                         <div className="logo-container">
                             <div className="water-logo"></div>
                         </div>

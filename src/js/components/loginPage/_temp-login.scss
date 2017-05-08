@@ -1,0 +1,40 @@
+.temp-login {
+  width: 100%;
+  height: $map-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  input {
+
+    height: 40px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: solid 1px $primary-color;
+    margin-bottom: 30px;
+    font-size: 1.3rem;
+
+    &:focus {
+      outline: none;
+    }
+
+  }
+
+  .login-btn {
+    width: 200px;
+    text-align: center;
+    border: solid 2px $primary-color;
+    padding: 10px 0;
+    cursor: pointer;
+    color: $primary-color;
+    font-size: 1.3rem;
+    font-weight: $medium-weight;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $white;
+    }
+  }
+}
