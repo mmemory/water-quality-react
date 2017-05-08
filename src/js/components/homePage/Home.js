@@ -14,9 +14,9 @@ const Home = () => {
             <main>
                 <ShowcaseContainer/>
 
-                <ActionCallSection/>
-
                 <MobileShowcaseContainer/>
+
+                <ActionCallSection/>
             </main>
             <Footer />
         </div>

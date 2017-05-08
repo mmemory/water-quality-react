@@ -14,9 +14,9 @@ const Header = (props) => {
                 </div>
 
                 <div className="nav-right">
-                    <ul>
-                        <li><Link to="/signup">Login</Link></li>
-                    </ul>
+                    {/*<ul>*/}
+                        {/*<li><Link to="/signup">Login</Link></li>*/}
+                    {/*</ul>*/}
                 </div>
 
             </div>
