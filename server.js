@@ -16,8 +16,8 @@ passport.initialize();
 
 passport.use(new LocalStrategy(
     function(username, password, done) {
-        console.log('TEST',username, password)
-        if(username === 'tom' && password === 'hello') {
+        console.log('TEST',username, password);
+        if(username === 'waterTeam' && password === 'w@terT3am') {
             let user = {
                 username: username,
                 pass: password
