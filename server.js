@@ -36,9 +36,18 @@ function isAuthenticated(req, res, next) {
     return false;
 }
 
-app.get('/auth', passport.authenticate('local',{ session: false }), function (req, res) {
+app.post('/api/auth', passport.authenticate('local',{ session: false }), function (req, res) {
+    res.end();
+});
+
+app.get('/auth/me', isAuthenticated, function (req, res) {
     console.log(req.user);
-    res.redirect('/home')
+    res.send(req.user);
+});
+
+app.get('/auth/logout', isAuthenticated, function (req, res) {
+    req.logout();
+    res.end();
 });
 
 app.get('*', function(req, res) {
