@@ -71,8 +71,8 @@ class LoginPage extends React.Component {
 
         this.state = {
             redirectToReferrer: false,
-            username: 'waterTeam',
-            password: 'w@terT3am'
+            username: '',
+            password: ''
         };
 
         this.login = this.login.bind(this);
