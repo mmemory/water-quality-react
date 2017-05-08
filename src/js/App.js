@@ -40,7 +40,7 @@ class Routes extends React.Component {
                     <Route exact path="/" component={LoginPage}/>
                     <Route path="/home" render={({match}) => (
                         //this.state.loggedIn ? <Home/> : <Redirect to="/"/>
-                        return (<Home/>)
+                        <Home/>
                     )}/>
                     <Route path="/map" component={MapPage}/>
                     <Route path="/signup" component={SignupPage}/>
